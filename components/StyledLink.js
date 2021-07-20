@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function ActiveLink({ children, href }) {
+function StyledLink({ children, href }) {
   const [hover, setHover] = useState(false);
   const router = useRouter();
 
@@ -23,4 +23,4 @@ function ActiveLink({ children, href }) {
   );
 }
 
-export default ActiveLink;
+export default StyledLink;
