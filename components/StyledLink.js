@@ -9,6 +9,7 @@ function StyledLink({ children, href }) {
   const style = {
     color: active ? "#111" : "#1976d2",
     textDecoration: hover ? "underline" : "none",
+    fontWeight: active ? "500" : "",
   };
 
   const handleClick = (e) => {
