@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function ActiveLink({ children, href }) {
+function StyledLink({ children, href }) {
   const [hover, setHover] = useState(false);
   const router = useRouter();
 
@@ -9,6 +9,7 @@ function ActiveLink({ children, href }) {
   const style = {
     color: active ? "#111" : "#1976d2",
     textDecoration: hover ? "underline" : "none",
+    fontWeight: active ? "500" : "",
   };
 
   const handleClick = (e) => {
@@ -23,4 +24,4 @@ function ActiveLink({ children, href }) {
   );
 }
 
-export default ActiveLink;
+export default StyledLink;
