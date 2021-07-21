@@ -3,8 +3,7 @@ import Table, { TableData, TableRow } from "../../components/Table";
 import { tableContainer } from "./sips.module.scss";
 import { default as Link } from "../../components/StyledLink";
 import { getAllMarkdowns } from "../../utils/markdown";
-import { formatAuthor } from "../../utils/formatAuthor";
-import { MARKDOWN_METADATA_FIELDS } from "../../utils/constants";
+import { MARKDOWN_METADATA_FIELDS, SIPS_FOLDER_PATH } from "../../utils/constants";
 import FormatAuthorToLink from "../../components/FormatAuthorToLink";
 
 const sortBySipNumber = (md1, md2) => {
@@ -64,7 +63,7 @@ const SIPsPage = ({ allSIPs = [] }) => {
 export default SIPsPage;
 
 export async function getStaticProps() {
-  const allSIPs = getAllMarkdowns("content/SIPs", MARKDOWN_METADATA_FIELDS);
+  const allSIPs = getAllMarkdowns(SIPS_FOLDER_PATH, MARKDOWN_METADATA_FIELDS);
 
   return {
     props: {

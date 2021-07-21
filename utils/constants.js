@@ -10,3 +10,5 @@ export const MARKDOWN_METADATA_FIELDS = [
   "updated",
   "requires",
 ];
+
+export const SIPS_FOLDER_PATH = "content/SIPs";
