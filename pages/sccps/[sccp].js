@@ -26,6 +26,7 @@ const SccpPage = ({ sccp }) => {
           created={sccp.created}
           updated={sccp.updated}
           requires={sccp.requires}
+          proposalType="sccp"
         />
       </div>
 

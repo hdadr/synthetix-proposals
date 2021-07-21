@@ -1,6 +1,7 @@
 import styles from "./proposal-metadata-header.module.scss";
 import { default as Link } from "../StyledLink";
 import FormatAuthorToLink from "../FormatAuthorToLink";
+import { addComma } from "../../utils/addComma";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -11,9 +12,29 @@ const isValidDate = (dateString) => {
   return !!Date.parse(dateString);
 };
 
-const ProposalMetadataHeader = ({ author, discussionsTo, status, created, updated, requires }) => {
+const formatRequiredProposalLink = (requires, proposalType) => {
+  let baseUrl = proposalType === "sip" ? "/sips/sip-" : "/sccps/sccp-";
+
+  if (Number.isInteger(requires)) {
+    return [{ link: `${baseUrl}${requires}`, name: requires }];
+  }
+
+  if (requires.includes(",")) {
+    const proposals = requires.split(",");
+    return proposals.map((proposal) => {
+      return { link: `${baseUrl}${proposal.trim()}`, name: proposal };
+    });
+  }
+
+  return [{ link: `${baseUrl}${proposal}`, name: proposal }];
+};
+
+const ProposalMetadataHeader = ({ author, discussionsTo, status, created, updated, requires, proposalType }) => {
   return (
     <>
+      <h1>
+        {proposalType} {requires}
+      </h1>
       <table className={styles.table}>
         <tbody>
           <tr>
@@ -50,7 +71,11 @@ const ProposalMetadataHeader = ({ author, discussionsTo, status, created, update
             <tr>
               <th className={`${styles.tableCell} ${styles.tableHead}`}>Requires</th>
               <td className={styles.tableCell}>
-                <Link href={`/sips/${requires.toLowerCase()}`}>{requires}</Link>
+                {formatRequiredProposalLink(requires, proposalType).map((proposal, index) => (
+                  <Link key={proposal.name} href={proposal.link}>
+                    {addComma(proposal.name, index)}
+                  </Link>
+                ))}
               </td>
             </tr>
           ) : null}

@@ -26,6 +26,7 @@ const SipPage = ({ sip }) => {
           created={sip.created}
           updated={sip.updated}
           requires={sip.requires}
+          proposalType="sip"
         />
       </div>
 
