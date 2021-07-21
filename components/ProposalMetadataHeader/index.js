@@ -32,9 +32,6 @@ const formatRequiredProposalLink = (requires, proposalType) => {
 const ProposalMetadataHeader = ({ author, discussionsTo, status, created, updated, requires, proposalType }) => {
   return (
     <>
-      <h1>
-        {proposalType} {requires}
-      </h1>
       <table className={styles.table}>
         <tbody>
           <tr>
