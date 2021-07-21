@@ -35,7 +35,7 @@ export function getAllMarkdowns(folderPath = "", fields = []) {
   const slugs = getMarkdownSlugs(folderPath);
   const markdowns = slugs
     .map((slug) => {
-      if (slug === "assets") return null; // assets folder
+      if (slug.includes("asset")) return null; // asset | assets folder
       return getMarkdownBySlug(slug, folderPath, fields);
     })
     .filter((markdown) => !!markdown);
