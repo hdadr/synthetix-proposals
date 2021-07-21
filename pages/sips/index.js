@@ -4,6 +4,7 @@ import { tableContainer } from "./sips.module.scss";
 import { default as Link } from "../../components/StyledLink";
 import { getAllMarkdowns } from "../../utils/markdown";
 import { formatAuthor } from "../../utils/formatAuthor";
+import { MARKDOWN_METADATA_FIELDS } from "../../utils/constants";
 
 const sortBySipNumber = (md1, md2) => {
   if (!md1 || !md2) return -1;
@@ -74,11 +75,17 @@ const SIPsPage = ({ allSIPs = [] }) => {
 export default SIPsPage;
 
 export async function getStaticProps() {
-  const allSIPs = getAllMarkdowns("content/SIPs", ["sip", "title", "status", "author"]);
+  const allSIPs = getAllMarkdowns("content/SIPs", MARKDOWN_METADATA_FIELDS);
 
   return {
     props: {
-      allSIPs,
+      allSIPs: allSIPs.map((sip) => {
+        return {
+          ...sip,
+          created: sip.created ? sip.created.toString() : null,
+          updated: sip.updated ? sip.updated.toString() : null,
+        };
+      }),
     },
   };
 }

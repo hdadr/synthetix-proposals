@@ -1,6 +1,8 @@
 import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
+import remark from "remark";
+import remarkHtml from "remark-html";
 
 export function getMarkdownSlugs(folderPath) {
   return fs.readdirSync(join(process.cwd(), folderPath));
@@ -39,4 +41,9 @@ export function getAllMarkdowns(folderPath = "", fields = []) {
     .filter((markdown) => !!markdown);
 
   return markdowns;
+}
+
+export default function markdownToHtml(markdown) {
+  const result = remark().use(remarkHtml, { sanitize: true }).processSync(markdown);
+  return result.toString();
 }
