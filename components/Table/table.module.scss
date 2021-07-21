@@ -2,6 +2,7 @@
   width: 100%;
   display: table;
   border-spacing: 0;
+  table-layout: fixed;
 }
 .thead {
   display: table-header-group;
@@ -34,4 +35,11 @@
   color: rgba(0, 0, 0, 0.87);
   font-weight: 500;
   line-height: 1.5rem;
+
+  &:first-of-type {
+    width: 12%;
+  }
+  &:nth-child(3) {
+    width: 30%;
+  }
 }
