@@ -7,6 +7,10 @@ const formatDate = (dateString) => {
   return date.toISOString().substr(0, 10);
 };
 
+const isValidDate = (dateString) => {
+  return !!Date.parse(dateString);
+};
+
 const ProposalMetadataHeader = ({ author, discussionsTo, status, created, updated, requires }) => {
   return (
     <>
@@ -36,7 +40,7 @@ const ProposalMetadataHeader = ({ author, discussionsTo, status, created, update
             <td className={styles.tableCell}>{formatDate(created)}</td>
           </tr>
 
-          {updated ? (
+          {isValidDate(updated) ? (
             <tr>
               <th className={`${styles.tableCell} ${styles.tableHead}`}>Updated</th>
               <td className={styles.tableCell}>{formatDate(updated)}</td>
