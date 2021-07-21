@@ -5,6 +5,7 @@ import { default as Link } from "../../components/StyledLink";
 import { getAllMarkdowns } from "../../utils/markdown";
 import { formatAuthor } from "../../utils/formatAuthor";
 import { MARKDOWN_METADATA_FIELDS } from "../../utils/constants";
+import FormatAuthorToLink from "../../components/FormatAuthorToLink";
 
 const sortBySipNumber = (md1, md2) => {
   if (!md1 || !md2) return -1;
@@ -46,19 +47,7 @@ const SIPsPage = ({ allSIPs = [] }) => {
                       <TableData>{proposal.title}</TableData>
 
                       <TableData>
-                        {formatAuthor(proposal.author).map(([name, githubUserName], index) => {
-                          const addComma = (name, index) => (index > 0 ? `, ${name}` : name);
-
-                          if (!!githubUserName) {
-                            return (
-                              <Link key={name} href={`https://github.com/${githubUserName}`}>
-                                {addComma(name, index)}
-                              </Link>
-                            );
-                          }
-
-                          return addComma(name, index);
-                        })}
+                        <FormatAuthorToLink author={proposal.author} />
                       </TableData>
                     </TableRow>
                   );
