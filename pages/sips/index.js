@@ -40,7 +40,7 @@ const SIPsPage = ({ allSIPs = [] }) => {
                   return (
                     <TableRow key={proposal.sip}>
                       <TableData>
-                        <Link href={`/sips/${proposal.sip}`}>{proposal.sip}</Link>
+                        <Link href={`/sips/sip-${proposal.sip}`}>{proposal.sip}</Link>
                       </TableData>
 
                       <TableData>{proposal.title}</TableData>
